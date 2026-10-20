@@ -13,7 +13,6 @@
         }
 
         body {
-            /* درجات ألوان الهوية: الزيتي العسكري الغامق مع الأسود الفاخر */
             background: radial-gradient(circle at center, #1b261d 0%, #080d09 100%);
             height: 100vh;
             display: flex;
@@ -23,7 +22,6 @@
             color: #fff;
         }
 
-        /* خلفية زخرفية ملكية خفيفة */
         body::before {
             content: "";
             position: absolute;
@@ -41,7 +39,7 @@
             max-width: 900px;
         }
 
-        /* تصميم شعار هيئة الدفاع المدني والإسعاف البارز */
+        /* شعار الهيئة بتصميم ذهبي فاخر وبارز */
         .logo-container {
             margin-bottom: 15px;
             display: flex;
@@ -50,22 +48,21 @@
         }
 
         .authority-logo {
-            width: 130px;
-            height: 130px;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.4));
+            width: 140px;
+            height: 140px;
+            filter: drop-shadow(0 6px 15px rgba(212, 175, 55, 0.45));
             animation: float-logo 3s ease-in-out infinite;
         }
 
         @keyframes float-logo {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            50% { transform: translateY(-6px); }
         }
 
         .authority-badge {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #D4AF37;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             margin-bottom: 15px;
             font-weight: 700;
             text-transform: uppercase;
@@ -107,7 +104,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* تأثير التوهج النبضي للزر */
         .launch-btn-wrapper {
             position: relative;
             display: inline-block;
@@ -117,7 +113,6 @@
             animation: pulse-glow 2.5s infinite;
         }
 
-        /* تصميم زر التدشين الفخم المستوحى من الهوية */
         .launch-btn {
             background: radial-gradient(circle at 30% 30%, #2e4b33 0%, #0e1710 100%);
             color: #D4AF37;
@@ -156,7 +151,6 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
-        /* حاوية الفيديو */
         #video-container {
             position: fixed;
             top: 0;
@@ -208,13 +202,31 @@
 <body>
 
     <div id="launch-container">
-        <!-- إضافة شعار الهيئة الرسمي -->
+        <!-- شعار الهيئة الرسمي المدمج بدقة عالية -->
         <div class="logo-container">
-            <img src="logo.png" alt="شعار هيئة الدفاع المدني والإسعاف" class="authority-logo">
+            <svg class="authority-logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- خلفية دائرية خفيفة للشعار -->
+                <circle cx="250" cy="250" r="230" fill="#0e1710" stroke="#D4AF37" stroke-width="6" opacity="0.85"/>
+                <!-- زخرفة الخنجر والسيوف العمانية الذهبية -->
+                <g fill="#D4AF37">
+                    <!-- سيفين متقاطعين -->
+                    <path d="M100,100 L400,400 M100,400 L400,100" stroke="#D4AF37" stroke-width="14" stroke-linecap="round"/>
+                    <!-- مقبض الخنجر العماني -->
+                    <path d="M220,130 C220,110 280,110 280,130 L270,210 C270,220 230,220 230,210 Z" fill="#D4AF37"/>
+                    <!-- نصل وخنجر عماني فخم -->
+                    <path d="M190,260 C230,290 280,260 310,220 C320,240 290,310 230,310 C180,310 170,280 190,260 Z" fill="#D4AF37"/>
+                    <circle cx="250" cy="220" r="25" fill="#D4AF37"/>
+                </g>
+                <!-- القاعدة الهلالية الخاصة بالهيئة -->
+                <path d="M80,370 Q250,470 420,370 C410,410 330,440 250,440 C170,440 90,410 80,370 Z" fill="#2e4b33" stroke="#D4AF37" stroke-width="8"/>
+                <!-- النص العربي داخل الشعار -->
+                <text x="250" y="415" font-size="28" font-weight="bold" fill="#D4AF37" text-anchor="middle" font-family="Segoe UI, Tahoma">هيئة الدفاع المدني والإسعاف</text>
+            </svg>
         </div>
+
         <div class="authority-badge">هيئة الدفاع المدني والإسعاف &bull; سلطنة عمان</div>
         
-        <!-- حقل اسم الضيف واللقب المفتوح (يمكنك تعديله لاحقاً بكل سهولة) -->
+        <!-- حقل اسم الضيف واللقب المفتوح -->
         <div class="patronage">
             تَحْتَ رِعَايَةِ <span>[ سعادة / معالي الضيف الموقر ]</span>
         </div>
@@ -239,7 +251,6 @@
     </div>
 
     <script>
-        // نظام توليد المؤثرات الصوتية والموسيقى التفاعلية (Web Audio API) لتشغيل فوري ومضمون
         let audioCtx = null;
 
         function initAudio() {
@@ -259,8 +270,8 @@
                 const gainNode = audioCtx.createGain();
 
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // نغمة احتفالية C5
-                osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.6); // تصاعدي مهيب
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
+                osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.6); 
 
                 gainNode.gain.setValueAtTime(0.35, audioCtx.currentTime);
                 gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5);
