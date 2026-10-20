@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حفل تدشين الأنظمة الطبية الذكية</title>
+    <title>حفل التدشين - هيئة الدفاع المدني والإسعاف</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,8 @@
         }
 
         body {
-            background: radial-gradient(circle at center, #0B192C 0%, #030712 100%);
+            /* درجات ألوان الهوية: الزيتي العسكري الغامق مع الأسود الفاخر */
+            background: radial-gradient(circle at center, #1b261d 0%, #080d09 100%);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,13 +23,13 @@
             color: #fff;
         }
 
-        /* خلفية مزخرفة فاخرة خفيفة */
+        /* خلفية زخرفية ملكية خفيفة */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1.5px, transparent 1.5px);
+            background-size: 35px 35px;
             pointer-events: none;
         }
 
@@ -37,71 +38,77 @@
             transition: all 0.8s ease-in-out;
             padding: 20px;
             z-index: 10;
-            max-width: 800px;
+            max-width: 900px;
         }
 
-        /* شعار وزارة الصحة أو الهيئة المعتمد */
-        .royal-logo {
-            font-size: 1.2rem;
+        /* شعار الجهة */
+        .authority-badge {
+            font-size: 1.1rem;
             color: #D4AF37;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            font-weight: 700;
             text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
+        /* مكان اسم الضيف واللقب المفتوح لتعديله لاحقاً */
         .patronage {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #E2E8F0;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-weight: 500;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+            letter-spacing: 0.5px;
         }
 
         .patronage span {
             color: #D4AF37;
-            font-weight: 700;
+            font-weight: 800;
+            border-bottom: 2px dashed #D4AF37;
+            padding-bottom: 2px;
         }
 
         h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 2.7rem;
+            margin-bottom: 12px;
             color: #ffffff;
             font-weight: 800;
-            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            background: linear-gradient(135deg, #fff 30%, #D4AF37 100%);
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+            background: linear-gradient(135deg, #fff 20%, #D4AF37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: #94a3b8;
-            margin-bottom: 50px;
+            margin-bottom: 45px;
             letter-spacing: 0.5px;
         }
 
-        /* زر التدشين الملكي الفاخر */
+        /* تأثير التوهج النبضي للزر */
         .launch-btn-wrapper {
             position: relative;
             display: inline-block;
-            padding: 10px;
+            padding: 15px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(212,175,55,0.4), transparent);
-            animation: pulse-glow 3s infinite;
+            background: linear-gradient(135deg, rgba(212,175,55,0.4), rgba(46,75,51,0.2));
+            animation: pulse-glow 2.5s infinite;
         }
 
+        /* تصميم زر التدشين الفخم المستوحى من الهوية العسكرية والذهبية */
         .launch-btn {
-            background: radial-gradient(circle at 30% 30%, #1e40af 0%, #0f172a 100%);
+            background: radial-gradient(circle at 30% 30%, #2e4b33 0%, #0e1710 100%);
             color: #D4AF37;
             border: 4px solid #D4AF37;
-            width: 220px;
-            height: 220px;
+            width: 230px;
+            height: 230px;
             font-size: 1.8rem;
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 5px 15px rgba(212,175,55,0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 5px 20px rgba(212,175,55,0.35);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
@@ -109,22 +116,23 @@
             align-items: center;
             text-align: center;
             line-height: 1.5;
+            outline: none;
         }
 
         .launch-btn:hover {
             transform: scale(1.08);
-            box-shadow: 0 20px 45px rgba(212, 175, 55, 0.5), inset 0 5px 20px rgba(212,175,55,0.5);
-            background: radial-gradient(circle at 30% 30%, #1d4ed8 0%, #1e293b 100%);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.6), inset 0 5px 25px rgba(212,175,55,0.6);
+            background: radial-gradient(circle at 30% 30%, #3a5e41 0%, #152217 100%);
             color: #fff;
         }
 
         .launch-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.96);
         }
 
         @keyframes pulse-glow {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { transform: scale(1.03); box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
+            70% { transform: scale(1.04); box-shadow: 0 0 0 25px rgba(212, 175, 55, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
         }
 
@@ -180,8 +188,13 @@
 <body>
 
     <div id="launch-container">
-        <div class="royal-logo">MINISTRY OF HEALTH &bull; سلطنة عمان</div>
-        <div class="patronage">تَحْتَ رِعَايَةِ مَعَالِي وَزِيرِ الصّحَّةِ الموقّر</div>
+        <div class="authority-badge">هيئة الدفاع المدني والإسعاف &bull; سلطنة عمان</div>
+        
+        <!-- حقل اسم الضيف واللقب مفتوح وقابل للتعديل لاحقاً بسهولة -->
+        <div class="patronage">
+            تَحْتَ رِعَايَةِ <span>[ سعادة / معالي الضيف الموقر ]</span>
+        </div>
+
         <h1>حَفْلُ تَدْشِينِ الأَنْظُمَةِ الطِّبِّيَّةِ الذَّكِيَّةِ</h1>
         <p>نظام التقارير الطبية الإلكتروني &bull; نظام الإشراف الطبي الميداني</p>
         
@@ -202,7 +215,47 @@
     </div>
 
     <script>
+        // نظام توليد المؤثرات الصوتية والموسيقى التفاعلية (Web Audio API) لتجنب أخطاء روابط الصوت الخارجية
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        // تشغيل نغمة فخمة عند الضغط (صفير أو جرس تدشين تفاعلي)
+        function playLaunchSound() {
+            try {
+                initAudio();
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+
+                // نغمة هادفة ومهيبة للحظة التدشين
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(440, audioCtx.currentTime); // نغمة أساسية A4
+                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.5); // تصاعدي
+
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+            } catch (e) {
+                console.log("Audio not supported or blocked");
+            }
+        }
+
         function startLaunch() {
+            playLaunchSound(); // تشغيل الصوت فور الضغط
+
             const launchContainer = document.getElementById('launch-container');
             const videoContainer = document.getElementById('video-container');
             const video = document.getElementById('promo-video');
