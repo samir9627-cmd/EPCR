@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حفل تدشين النظام الطبي الإلكتروني والإشراف الميداني</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* واجهة زر التدشين */
+        #launch-container {
+            text-align: center;
+            transition: all 0.8s ease-in-out;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        /* تصميم زر التدشين الفخم */
+        .launch-btn {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .launch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(2, 132, 199, 0.6);
+            background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+        }
+
+        .launch-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* حاوية الفيديو (مخفية بالبداية) */
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease;
+            z-index: 1000;
+        }
+
+        #video-container.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* زر العودة أو تخطي الفيديو إذا لزم الأمر */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s;
+            z-index: 1001;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشاشة الأولى: زر التدشين -->
+    <div id="launch-container">
+        <h1>حفل تدشين الأنظمة الطبية الذكية</h1>
+        <p>نظام التقارير الطبية الإلكتروني &bull; نظام الإشراف الطبي الميداني</p>
+        <button class="launch-btn" onclick="startLaunch()">اضغط هنا للتدشين</button>
+    </div>
+
+    <!-- شاشة تشغيل الفيديو -->
+    <div id="video-container">
+        <button class="back-btn" onclick="resetPage()">إعادة ضبط الشاشة</button>
+        <video id="promo-video" controls>
+            <!-- استبدل كلمة video.mp4 باسم ورابط ملف الفيديو الخاص بك -->
+            <source src="video.mp4" type="video/mp4">
+            متصفحك لا يدعم عرض الفيديو.
+        </video>
+    </div>
+
+    <script>
+        function startLaunch() {
+            const launchContainer = document.getElementById('launch-container');
+            const videoContainer = document.getElementById('video-container');
+            const video = document.getElementById('promo-video');
+
+            // إخفاء واجهة الزر بسلاسة
+            launchContainer.style.opacity = '0';
+            launchContainer.style.transform = 'scale(0.9)';
+
+            setTimeout(() => {
+                launchContainer.style.display = 'none';
+                // إظهار شاشة الفيديو وتشغيله تلقائياً
+                videoContainer.classList.add('active');
+                video.play();
+            }, 500);
+        }
+
+        function resetPage() {
+            const launchContainer = document.getElementById('launch-container');
+            const videoContainer = document.getElementById('video-container');
+            const video = document.getElementById('promo-video');
+
+            video.pause();
+            video.currentTime = 0;
+            videoContainer.classList.remove('active');
+
+            setTimeout(() => {
+                launchContainer.style.display = 'block';
+                setTimeout(() => {
+                    launchContainer.style.opacity = '1';
+                    launchContainer.style.transform = 'scale(1)';
+                }, 50);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
