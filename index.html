@@ -30,15 +30,15 @@
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1.5px, transparent 1.5px);
-            background-size: 40px 40px;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1.5px, transparent 1.5px);
+            background-size: 45px 45px;
             pointer-events: none;
-            animation: backgroundPan 20s linear infinite;
+            animation: backgroundPan 25s linear infinite;
         }
 
         @keyframes backgroundPan {
             0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
+            100% { background-position: 45px 45px; }
         }
 
         #launch-container {
@@ -55,30 +55,54 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* تصميم الشعار 3D */
+        /* تصميم حاوية الشعار المرفق */
         .logo-container {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             transform-style: preserve-3d;
             animation: float-logo 4s ease-in-out infinite;
+            position: relative;
         }
 
-        .authority-logo {
-            width: 180px;
-            height: 180px;
-            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
-            transition: transform 0.5s ease;
+        /* الشعار المرفق مع التأثيرات ثلاثية الأبعاد */
+        .authority-logo-img {
+            width: 200px; /* يمكنك تعديل الحجم من هنا */
+            height: auto;
+            /* تأثير الظل العميق والتوهج الذهبي ليبدو مجسماً */
+            filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.9)) 
+                    drop-shadow(0 0 25px rgba(212, 175, 55, 0.5))
+                    contrast(1.1) brightness(1.1);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .authority-logo:hover {
-            transform: scale(1.05) rotateY(15deg);
+        .authority-logo-img:hover {
+            transform: scale(1.08) rotateY(12deg) rotateX(5deg);
+        }
+
+        /* تأثير اللمعان المتحرك فوق الشعار */
+        .logo-glare {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: glare 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes glare {
+            0% { left: -100%; }
+            20% { left: 150%; }
+            100% { left: 150%; }
         }
 
         @keyframes float-logo {
             0%, 100% { transform: translateY(0) rotateX(0deg); }
-            50% { transform: translateY(-15px) rotateX(5deg); }
+            50% { transform: translateY(-12px) rotateX(4deg); }
         }
 
         .authority-badge {
@@ -114,7 +138,7 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 15px;
             font-weight: 800;
             text-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
@@ -125,9 +149,9 @@
         }
 
         p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #94a3b8;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             letter-spacing: 1px;
         }
 
@@ -137,7 +161,7 @@
             display: inline-block;
             padding: 20px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
             animation: pulse-glow 3s infinite;
         }
 
@@ -145,15 +169,15 @@
             background: linear-gradient(135deg, #2e4b33 0%, #0e1710 100%);
             color: #D4AF37;
             border: 4px solid #D4AF37;
-            width: 240px;
-            height: 240px;
-            font-size: 1.8rem;
+            width: 230px;
+            height: 230px;
+            font-size: 1.7rem;
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
             box-shadow: 
                 0 20px 40px rgba(0, 0, 0, 0.8), 
-                inset 0 5px 20px rgba(212,175,55,0.4),
+                inset 0 5px 20px rgba(212,175,55,0.3),
                 inset 0 -5px 20px rgba(0,0,0,0.8);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
@@ -167,7 +191,6 @@
             overflow: hidden;
         }
 
-        /* تأثير لمعان على الزر */
         .launch-btn::after {
             content: '';
             position: absolute;
@@ -200,7 +223,7 @@
 
         @keyframes pulse-glow {
             0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 1; }
             100% { transform: scale(1); opacity: 0.8; }
         }
 
@@ -230,7 +253,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
 
         .back-btn {
@@ -259,9 +281,9 @@
 
         /* التجاوب مع الشاشات الصغيرة */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            p { font-size: 1.1rem; }
-            .authority-logo { width: 130px; height: 130px; }
+            h1 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+            .authority-logo-img { width: 150px; }
             .launch-btn { width: 180px; height: 180px; font-size: 1.4rem; }
             .patronage { font-size: 1.2rem; }
         }
@@ -270,47 +292,11 @@
 <body>
 
     <div id="launch-container">
-        <!-- الشعار ثلاثي الأبعاد -->
+        <!-- حاوية الشعار المرفق -->
         <div class="logo-container">
-            <svg class="authority-logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <!-- تدرجات لونية لإعطاء تأثير 3D -->
-                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#FFF2A8" />
-                        <stop offset="50%" stop-color="#D4AF37" />
-                        <stop offset="100%" stop-color="#8B6914" />
-                    </linearGradient>
-                    <linearGradient id="darkGreenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#3a5e41" />
-                        <stop offset="100%" stop-color="#0e1710" />
-                    </linearGradient>
-                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity="0.8"/>
-                        <feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="#D4AF37" flood-opacity="0.3"/>
-                    </filter>
-                </defs>
-
-                <!-- الخلفية الدائرية -->
-                <circle cx="250" cy="250" r="230" fill="url(#darkGreenGradient)" stroke="url(#goldGradient)" stroke-width="8" filter="url(#shadow)"/>
-                
-                <!-- السيوف والخنجر -->
-                <g fill="url(#goldGradient)" filter="url(#shadow)">
-                    <!-- السيوف المتقاطعة -->
-                    <path d="M100,100 L400,400 M100,400 L400,100" stroke="url(#goldGradient)" stroke-width="16" stroke-linecap="round"/>
-                    
-                    <!-- الخنجر العماني -->
-                    <path d="M220,130 C220,100 280,100 280,130 L270,210 C270,225 230,225 230,210 Z" fill="url(#goldGradient)"/>
-                    <path d="M190,260 C230,290 280,260 310,220 C330,240 290,320 230,320 C180,320 160,280 190,260 Z" fill="url(#goldGradient)"/>
-                    <circle cx="250" cy="220" r="28" fill="#0e1710" stroke="url(#goldGradient)" stroke-width="6"/>
-                    <circle cx="250" cy="220" r="10" fill="url(#goldGradient)"/>
-                </g>
-
-                <!-- القاعدة الهلالية -->
-                <path d="M80,370 Q250,470 420,370 C410,420 330,460 250,460 C170,460 90,420 80,370 Z" fill="url(#darkGreenGradient)" stroke="url(#goldGradient)" stroke-width="10" filter="url(#shadow)"/>
-                
-                <!-- النص -->
-                <text x="250" y="425" font-size="30" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" font-family="Tajawal, sans-serif" filter="url(#shadow)">هيئة الدفاع المدني والإسعاف</text>
-            </svg>
+            <!-- ضع صورة الشعار المرفقة في نفس المجلد وسمها logo.png -->
+            <img src="logo.png" alt="شعار هيئة الدفاع المدني والإسعاف" class="authority-logo-img">
+            <div class="logo-glare"></div>
         </div>
 
         <div class="authority-badge">هيئة الدفاع المدني والإسعاف &bull; سلطنة عمان</div>
@@ -332,7 +318,6 @@
 
     <div id="video-container">
         <button class="back-btn" onclick="resetPage()">&#8592; إعادة ضبط الشاشة</button>
-        <!-- استبدل video.mp4 بمسار الفيديو الخاص بك -->
         <video id="promo-video" controls>
             <source src="video.mp4" type="video/mp4">
             متصفحك لا يدعم عرض الفيديو.
@@ -342,7 +327,6 @@
     <script>
         let audioCtx = null;
 
-        // تهيئة سياق الصوت
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -352,13 +336,13 @@
             }
         }
 
-        // مؤثر صوتي احترافي (Swoosh & Impact)
+        // مؤثر صوتي سينمائي (Swoosh + Impact + Chime)
         function playCinematicSound() {
             try {
                 initAudio();
                 const now = audioCtx.currentTime;
 
-                // 1. صوت الـ Swoosh (تحضير)
+                // 1. Swoosh
                 const osc1 = audioCtx.createOscillator();
                 const gain1 = audioCtx.createGain();
                 osc1.type = 'sine';
@@ -372,7 +356,7 @@
                 osc1.start(now);
                 osc1.stop(now + 0.4);
 
-                // 2. صوت الـ Impact (الضربة القوية)
+                // 2. Impact
                 const osc2 = audioCtx.createOscillator();
                 const gain2 = audioCtx.createGain();
                 osc2.type = 'triangle';
@@ -386,11 +370,11 @@
                 osc2.start(now + 0.4);
                 osc2.stop(now + 1.5);
 
-                // 3. نغمة نجاح (Chime)
+                // 3. Chime
                 const osc3 = audioCtx.createOscillator();
                 const gain3 = audioCtx.createGain();
                 osc3.type = 'sine';
-                osc3.frequency.setValueAtTime(1046.50, now + 0.6); // C6
+                osc3.frequency.setValueAtTime(1046.50, now + 0.6);
                 gain3.gain.setValueAtTime(0, now + 0.6);
                 gain3.gain.linearRampToValueAtTime(0.15, now + 0.7);
                 gain3.gain.exponentialRampToValueAtTime(0.01, now + 2.0);
@@ -400,12 +384,11 @@
                 osc3.stop(now + 2.0);
 
             } catch (e) {
-                console.log("Audio not supported or blocked by browser.");
+                console.log("Audio blocked.");
             }
         }
 
         function startLaunch() {
-            // تشغيل الصوت
             playCinematicSound();
 
             const launchContainer = document.getElementById('launch-container');
@@ -420,11 +403,7 @@
             setTimeout(() => {
                 launchContainer.style.display = 'none';
                 videoContainer.classList.add('active');
-                
-                // محاولة تشغيل الفيديو
-                video.play().catch(error => {
-                    console.log("المتصفح منع التشغيل التلقائي، يرجى الضغط على زر التشغيل في الفيديو.");
-                });
+                video.play().catch(error => console.log("Auto-play blocked."));
             }, 800);
         }
 
@@ -439,7 +418,6 @@
 
             setTimeout(() => {
                 launchContainer.style.display = 'block';
-                // إعادة تعيين التأثيرات
                 setTimeout(() => {
                     launchContainer.style.opacity = '1';
                     launchContainer.style.transform = 'scale(1) translateZ(0)';
