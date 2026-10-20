@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>حفل التدشين - هيئة الدفاع المدني والإسعاف</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', sans-serif;
         }
 
         body {
@@ -20,110 +22,139 @@
             align-items: center;
             overflow: hidden;
             color: #fff;
+            perspective: 1000px;
         }
 
+        /* تأثير النقاط الذهبية في الخلفية */
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1.5px, transparent 1.5px);
-            background-size: 35px 35px;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.15) 1.5px, transparent 1.5px);
+            background-size: 40px 40px;
             pointer-events: none;
+            animation: backgroundPan 20s linear infinite;
+        }
+
+        @keyframes backgroundPan {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
         }
 
         #launch-container {
             text-align: center;
-            transition: all 0.8s ease-in-out;
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
             padding: 20px;
             z-index: 10;
             max-width: 900px;
+            animation: fadeInDown 1.5s ease-out;
         }
 
-        /* شعار الهيئة بتصميم ذهبي فاخر وبارز */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تصميم الشعار 3D */
         .logo-container {
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
+            transform-style: preserve-3d;
+            animation: float-logo 4s ease-in-out infinite;
         }
 
         .authority-logo {
-            width: 140px;
-            height: 140px;
-            filter: drop-shadow(0 6px 15px rgba(212, 175, 55, 0.45));
-            animation: float-logo 3s ease-in-out infinite;
+            width: 180px;
+            height: 180px;
+            filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+            transition: transform 0.5s ease;
+        }
+
+        .authority-logo:hover {
+            transform: scale(1.05) rotateY(15deg);
         }
 
         @keyframes float-logo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-15px) rotateX(5deg); }
         }
 
         .authority-badge {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: #D4AF37;
-            letter-spacing: 2.5px;
-            margin-bottom: 15px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
             font-weight: 700;
-            text-transform: uppercase;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
         }
 
-        /* حقل اسم الضيف واللقب المفتوح لتعديله لاحقاً */
         .patronage {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: #E2E8F0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 500;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.7);
-            letter-spacing: 0.5px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.9);
+            letter-spacing: 1px;
         }
 
         .patronage span {
             color: #D4AF37;
             font-weight: 800;
             border-bottom: 2px dashed #D4AF37;
-            padding-bottom: 2px;
+            padding-bottom: 4px;
+            display: inline-block;
+            animation: pulseText 2s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         h1 {
-            font-size: 2.6rem;
-            margin-bottom: 12px;
-            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 15px;
             font-weight: 800;
-            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
-            background: linear-gradient(135deg, #fff 20%, #D4AF37 100%);
+            text-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, #ffffff 20%, #D4AF37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.4;
         }
 
         p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: #94a3b8;
-            margin-bottom: 40px;
-            letter-spacing: 0.5px;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
         }
 
+        /* تصميم الزر 3D */
         .launch-btn-wrapper {
             position: relative;
             display: inline-block;
-            padding: 15px;
+            padding: 20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(212,175,55,0.4), rgba(46,75,51,0.2));
-            animation: pulse-glow 2.5s infinite;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+            animation: pulse-glow 3s infinite;
         }
 
         .launch-btn {
-            background: radial-gradient(circle at 30% 30%, #2e4b33 0%, #0e1710 100%);
+            background: linear-gradient(135deg, #2e4b33 0%, #0e1710 100%);
             color: #D4AF37;
             border: 4px solid #D4AF37;
-            width: 220px;
-            height: 220px;
-            font-size: 1.7rem;
+            width: 240px;
+            height: 240px;
+            font-size: 1.8rem;
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 5px 20px rgba(212,175,55,0.35);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.8), 
+                inset 0 5px 20px rgba(212,175,55,0.4),
+                inset 0 -5px 20px rgba(0,0,0,0.8);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
@@ -132,25 +163,48 @@
             text-align: center;
             line-height: 1.5;
             outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير لمعان على الزر */
+        .launch-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(30deg);
+            transition: all 0.5s;
+            opacity: 0;
+        }
+
+        .launch-btn:hover::after {
+            opacity: 1;
+            left: 100%;
+            transition: all 1s;
         }
 
         .launch-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.6), inset 0 5px 25px rgba(212,175,55,0.6);
-            background: radial-gradient(circle at 30% 30%, #3a5e41 0%, #152217 100%);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 
+                0 30px 60px rgba(212, 175, 55, 0.4), 
+                inset 0 5px 30px rgba(212,175,55,0.6),
+                inset 0 -5px 20px rgba(0,0,0,0.8);
             color: #fff;
         }
 
         .launch-btn:active {
-            transform: scale(0.96);
+            transform: scale(0.95) translateY(0);
         }
 
         @keyframes pulse-glow {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.5); }
-            70% { transform: scale(1.04); box-shadow: 0 0 0 25px rgba(212, 175, 55, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
         }
 
+        /* شاشة الفيديو */
         #video-container {
             position: fixed;
             top: 0;
@@ -163,7 +217,7 @@
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1s ease;
+            transition: opacity 1.5s ease;
             z-index: 1000;
         }
 
@@ -176,57 +230,91 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
         }
 
         .back-btn {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 8px 18px;
-            border-radius: 8px;
+            top: 30px;
+            right: 30px;
+            background: rgba(14, 23, 16, 0.8);
+            color: #D4AF37;
+            border: 2px solid #D4AF37;
+            padding: 10px 25px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: bold;
             backdrop-filter: blur(10px);
-            transition: background 0.3s;
+            transition: all 0.3s;
             z-index: 1001;
+            font-family: 'Tajawal', sans-serif;
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #D4AF37;
+            color: #0e1710;
+            transform: scale(1.05);
+        }
+
+        /* التجاوب مع الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            p { font-size: 1.1rem; }
+            .authority-logo { width: 130px; height: 130px; }
+            .launch-btn { width: 180px; height: 180px; font-size: 1.4rem; }
+            .patronage { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
     <div id="launch-container">
-        <!-- شعار الهيئة الرسمي المدمج بدقة عالية -->
+        <!-- الشعار ثلاثي الأبعاد -->
         <div class="logo-container">
             <svg class="authority-logo" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-                <!-- خلفية دائرية خفيفة للشعار -->
-                <circle cx="250" cy="250" r="230" fill="#0e1710" stroke="#D4AF37" stroke-width="6" opacity="0.85"/>
-                <!-- زخرفة الخنجر والسيوف العمانية الذهبية -->
-                <g fill="#D4AF37">
-                    <!-- سيفين متقاطعين -->
-                    <path d="M100,100 L400,400 M100,400 L400,100" stroke="#D4AF37" stroke-width="14" stroke-linecap="round"/>
-                    <!-- مقبض الخنجر العماني -->
-                    <path d="M220,130 C220,110 280,110 280,130 L270,210 C270,220 230,220 230,210 Z" fill="#D4AF37"/>
-                    <!-- نصل وخنجر عماني فخم -->
-                    <path d="M190,260 C230,290 280,260 310,220 C320,240 290,310 230,310 C180,310 170,280 190,260 Z" fill="#D4AF37"/>
-                    <circle cx="250" cy="220" r="25" fill="#D4AF37"/>
+                <defs>
+                    <!-- تدرجات لونية لإعطاء تأثير 3D -->
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#FFF2A8" />
+                        <stop offset="50%" stop-color="#D4AF37" />
+                        <stop offset="100%" stop-color="#8B6914" />
+                    </linearGradient>
+                    <linearGradient id="darkGreenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#3a5e41" />
+                        <stop offset="100%" stop-color="#0e1710" />
+                    </linearGradient>
+                    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#000" flood-opacity="0.8"/>
+                        <feDropShadow dx="0" dy="0" stdDeviation="15" flood-color="#D4AF37" flood-opacity="0.3"/>
+                    </filter>
+                </defs>
+
+                <!-- الخلفية الدائرية -->
+                <circle cx="250" cy="250" r="230" fill="url(#darkGreenGradient)" stroke="url(#goldGradient)" stroke-width="8" filter="url(#shadow)"/>
+                
+                <!-- السيوف والخنجر -->
+                <g fill="url(#goldGradient)" filter="url(#shadow)">
+                    <!-- السيوف المتقاطعة -->
+                    <path d="M100,100 L400,400 M100,400 L400,100" stroke="url(#goldGradient)" stroke-width="16" stroke-linecap="round"/>
+                    
+                    <!-- الخنجر العماني -->
+                    <path d="M220,130 C220,100 280,100 280,130 L270,210 C270,225 230,225 230,210 Z" fill="url(#goldGradient)"/>
+                    <path d="M190,260 C230,290 280,260 310,220 C330,240 290,320 230,320 C180,320 160,280 190,260 Z" fill="url(#goldGradient)"/>
+                    <circle cx="250" cy="220" r="28" fill="#0e1710" stroke="url(#goldGradient)" stroke-width="6"/>
+                    <circle cx="250" cy="220" r="10" fill="url(#goldGradient)"/>
                 </g>
-                <!-- القاعدة الهلالية الخاصة بالهيئة -->
-                <path d="M80,370 Q250,470 420,370 C410,410 330,440 250,440 C170,440 90,410 80,370 Z" fill="#2e4b33" stroke="#D4AF37" stroke-width="8"/>
-                <!-- النص العربي داخل الشعار -->
-                <text x="250" y="415" font-size="28" font-weight="bold" fill="#D4AF37" text-anchor="middle" font-family="Segoe UI, Tahoma">هيئة الدفاع المدني والإسعاف</text>
+
+                <!-- القاعدة الهلالية -->
+                <path d="M80,370 Q250,470 420,370 C410,420 330,460 250,460 C170,460 90,420 80,370 Z" fill="url(#darkGreenGradient)" stroke="url(#goldGradient)" stroke-width="10" filter="url(#shadow)"/>
+                
+                <!-- النص -->
+                <text x="250" y="425" font-size="30" font-weight="bold" fill="url(#goldGradient)" text-anchor="middle" font-family="Tajawal, sans-serif" filter="url(#shadow)">هيئة الدفاع المدني والإسعاف</text>
             </svg>
         </div>
 
         <div class="authority-badge">هيئة الدفاع المدني والإسعاف &bull; سلطنة عمان</div>
         
-        <!-- حقل اسم الضيف واللقب المفتوح -->
         <div class="patronage">
             تَحْتَ رِعَايَةِ <span>[ سعادة / معالي الضيف الموقر ]</span>
         </div>
@@ -236,14 +324,15 @@
         
         <div class="launch-btn-wrapper">
             <button class="launch-btn" onclick="startLaunch()">
-                <span>اضغط هنا</span>
-                <span style="font-size: 1.1rem; font-weight: normal; color: #cbd5e1;">للتدشين</span>
+                <span>اضغط للتدشين</span>
+                <span style="font-size: 1rem; font-weight: normal; color: #cbd5e1; margin-top: 5px;">ابدأ العرض</span>
             </button>
         </div>
     </div>
 
     <div id="video-container">
-        <button class="back-btn" onclick="resetPage()">إعادة ضبط الشاشة</button>
+        <button class="back-btn" onclick="resetPage()">&#8592; إعادة ضبط الشاشة</button>
+        <!-- استبدل video.mp4 بمسار الفيديو الخاص بك -->
         <video id="promo-video" controls>
             <source src="video.mp4" type="video/mp4">
             متصفحك لا يدعم عرض الفيديو.
@@ -253,54 +342,90 @@
     <script>
         let audioCtx = null;
 
+        // تهيئة سياق الصوت
         function initAudio() {
             if (!audioCtx) {
                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
         }
 
-        function playLaunchSound() {
+        // مؤثر صوتي احترافي (Swoosh & Impact)
+        function playCinematicSound() {
             try {
                 initAudio();
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
+                const now = audioCtx.currentTime;
 
-                const osc = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
+                // 1. صوت الـ Swoosh (تحضير)
+                const osc1 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(200, now);
+                osc1.frequency.exponentialRampToValueAtTime(800, now + 0.4);
+                gain1.gain.setValueAtTime(0, now);
+                gain1.gain.linearRampToValueAtTime(0.2, now + 0.2);
+                gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+                osc1.connect(gain1);
+                gain1.connect(audioCtx.destination);
+                osc1.start(now);
+                osc1.stop(now + 0.4);
 
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); 
-                osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.6); 
+                // 2. صوت الـ Impact (الضربة القوية)
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(150, now + 0.4);
+                osc2.frequency.exponentialRampToValueAtTime(40, now + 1.5);
+                gain2.gain.setValueAtTime(0, now + 0.4);
+                gain2.gain.linearRampToValueAtTime(0.5, now + 0.45);
+                gain2.gain.exponentialRampToValueAtTime(0.01, now + 1.5);
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+                osc2.start(now + 0.4);
+                osc2.stop(now + 1.5);
 
-                gainNode.gain.setValueAtTime(0.35, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5);
+                // 3. نغمة نجاح (Chime)
+                const osc3 = audioCtx.createOscillator();
+                const gain3 = audioCtx.createGain();
+                osc3.type = 'sine';
+                osc3.frequency.setValueAtTime(1046.50, now + 0.6); // C6
+                gain3.gain.setValueAtTime(0, now + 0.6);
+                gain3.gain.linearRampToValueAtTime(0.15, now + 0.7);
+                gain3.gain.exponentialRampToValueAtTime(0.01, now + 2.0);
+                osc3.connect(gain3);
+                gain3.connect(audioCtx.destination);
+                osc3.start(now + 0.6);
+                osc3.stop(now + 2.0);
 
-                osc.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-
-                osc.start();
-                osc.stop(audioCtx.currentTime + 1.5);
             } catch (e) {
-                console.log("Audio not supported");
+                console.log("Audio not supported or blocked by browser.");
             }
         }
 
         function startLaunch() {
-            playLaunchSound();
+            // تشغيل الصوت
+            playCinematicSound();
 
             const launchContainer = document.getElementById('launch-container');
             const videoContainer = document.getElementById('video-container');
             const video = document.getElementById('promo-video');
 
+            // تأثير التلاشي السينمائي
             launchContainer.style.opacity = '0';
-            launchContainer.style.transform = 'scale(0.9)';
+            launchContainer.style.transform = 'scale(1.1) translateZ(100px)';
+            launchContainer.style.filter = 'blur(10px)';
 
             setTimeout(() => {
                 launchContainer.style.display = 'none';
                 videoContainer.classList.add('active');
-                video.play();
-            }, 600);
+                
+                // محاولة تشغيل الفيديو
+                video.play().catch(error => {
+                    console.log("المتصفح منع التشغيل التلقائي، يرجى الضغط على زر التشغيل في الفيديو.");
+                });
+            }, 800);
         }
 
         function resetPage() {
@@ -314,9 +439,11 @@
 
             setTimeout(() => {
                 launchContainer.style.display = 'block';
+                // إعادة تعيين التأثيرات
                 setTimeout(() => {
                     launchContainer.style.opacity = '1';
-                    launchContainer.style.transform = 'scale(1)';
+                    launchContainer.style.transform = 'scale(1) translateZ(0)';
+                    launchContainer.style.filter = 'blur(0)';
                 }, 50);
             }, 500);
         }
