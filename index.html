@@ -41,20 +41,40 @@
             max-width: 900px;
         }
 
-        /* شعار الجهة */
+        /* تصميم شعار هيئة الدفاع المدني والإسعاف البارز */
+        .logo-container {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .authority-logo {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.4));
+            animation: float-logo 3s ease-in-out infinite;
+        }
+
+        @keyframes float-logo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
         .authority-badge {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #D4AF37;
-            letter-spacing: 3px;
-            margin-bottom: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
             font-weight: 700;
             text-transform: uppercase;
             text-shadow: 0 2px 4px rgba(0,0,0,0.6);
         }
 
-        /* مكان اسم الضيف واللقب المفتوح لتعديله لاحقاً */
+        /* حقل اسم الضيف واللقب المفتوح لتعديله لاحقاً */
         .patronage {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #E2E8F0;
             margin-bottom: 20px;
             font-weight: 500;
@@ -70,7 +90,7 @@
         }
 
         h1 {
-            font-size: 2.7rem;
+            font-size: 2.6rem;
             margin-bottom: 12px;
             color: #ffffff;
             font-weight: 800;
@@ -81,9 +101,9 @@
         }
 
         p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #94a3b8;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             letter-spacing: 0.5px;
         }
 
@@ -97,14 +117,14 @@
             animation: pulse-glow 2.5s infinite;
         }
 
-        /* تصميم زر التدشين الفخم المستوحى من الهوية العسكرية والذهبية */
+        /* تصميم زر التدشين الفخم المستوحى من الهوية */
         .launch-btn {
             background: radial-gradient(circle at 30% 30%, #2e4b33 0%, #0e1710 100%);
             color: #D4AF37;
             border: 4px solid #D4AF37;
-            width: 230px;
-            height: 230px;
-            font-size: 1.8rem;
+            width: 220px;
+            height: 220px;
+            font-size: 1.7rem;
             font-weight: bold;
             border-radius: 50%;
             cursor: pointer;
@@ -188,9 +208,13 @@
 <body>
 
     <div id="launch-container">
+        <!-- إضافة شعار الهيئة الرسمي -->
+        <div class="logo-container">
+            <img src="logo.png" alt="شعار هيئة الدفاع المدني والإسعاف" class="authority-logo">
+        </div>
         <div class="authority-badge">هيئة الدفاع المدني والإسعاف &bull; سلطنة عمان</div>
         
-        <!-- حقل اسم الضيف واللقب مفتوح وقابل للتعديل لاحقاً بسهولة -->
+        <!-- حقل اسم الضيف واللقب المفتوح (يمكنك تعديله لاحقاً بكل سهولة) -->
         <div class="patronage">
             تَحْتَ رِعَايَةِ <span>[ سعادة / معالي الضيف الموقر ]</span>
         </div>
@@ -201,7 +225,7 @@
         <div class="launch-btn-wrapper">
             <button class="launch-btn" onclick="startLaunch()">
                 <span>اضغط هنا</span>
-                <span style="font-size: 1.2rem; font-weight: normal; color: #cbd5e1;">للتدشين</span>
+                <span style="font-size: 1.1rem; font-weight: normal; color: #cbd5e1;">للتدشين</span>
             </button>
         </div>
     </div>
@@ -215,7 +239,7 @@
     </div>
 
     <script>
-        // نظام توليد المؤثرات الصوتية والموسيقى التفاعلية (Web Audio API) لتجنب أخطاء روابط الصوت الخارجية
+        // نظام توليد المؤثرات الصوتية والموسيقى التفاعلية (Web Audio API) لتشغيل فوري ومضمون
         let audioCtx = null;
 
         function initAudio() {
@@ -224,7 +248,6 @@
             }
         }
 
-        // تشغيل نغمة فخمة عند الضغط (صفير أو جرس تدشين تفاعلي)
         function playLaunchSound() {
             try {
                 initAudio();
@@ -232,29 +255,28 @@
                     audioCtx.resume();
                 }
 
-                // نغمة هادفة ومهيبة للحظة التدشين
                 const osc = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
 
                 osc.type = 'triangle';
-                osc.frequency.setValueAtTime(440, audioCtx.currentTime); // نغمة أساسية A4
-                osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.5); // تصاعدي
+                osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // نغمة احتفالية C5
+                osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.6); // تصاعدي مهيب
 
-                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+                gainNode.gain.setValueAtTime(0.35, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.5);
 
                 osc.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
 
                 osc.start();
-                osc.stop(audioCtx.currentTime + 1.2);
+                osc.stop(audioCtx.currentTime + 1.5);
             } catch (e) {
-                console.log("Audio not supported or blocked");
+                console.log("Audio not supported");
             }
         }
 
         function startLaunch() {
-            playLaunchSound(); // تشغيل الصوت فور الضغط
+            playLaunchSound();
 
             const launchContainer = document.getElementById('launch-container');
             const videoContainer = document.getElementById('video-container');
